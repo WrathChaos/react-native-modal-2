@@ -1,39 +1,16 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "es6",
-    "lib": ["es6"],
-    "allowJs": true,
-    "jsx": "react-native",
-    "noImplicitAny": false,
-    "incremental": true /* Enable incremental compilation */,
-    "isolatedModules": true,
+    "target": "es2015",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./build/dist",
     "strict": true,
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "outDir": "build/dist",
-    "noEmitHelpers": true,
-    "alwaysStrict": true,
-    "strictFunctionTypes": true,
-    "resolveJsonModule": true,
-    "importHelpers": false,
-    "experimentalDecorators": true,
-    "strictPropertyInitialization": false,
-    "allowSyntheticDefaultImports": true,
-    "strictNullChecks": true,
-    "skipDefaultLibCheck": true,
+    "jsx": "react",
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "typeRoots": ["./node_modules/@types", "./@types"],
-    "declaration": true /* Generates corresponding '.d.ts' file. */,
-    "sourceMap": true /* Generates corresponding '.map' file. */
+    "lib": ["es2017"],
+    "types": ["react", "react-native"]
   },
-  "exclude": [
-    "example",
-    "example-manual-state",
-    "node_modules",
-    "babel.config.js",
-    "metro.config.js",
-    "jest.config.js"
-  ]
+  "include": ["lib/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts", "example"]
 }

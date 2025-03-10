@@ -1,118 +1,144 @@
-<img alt="React Native Typescript Library Starter" src="assets/logo.png" width="1050"/>
+# React Native Modal
 
-[![Battle Tested ✅](https://img.shields.io/badge/-Battle--Tested%20%E2%9C%85-03666e?style=for-the-badge)](https://github.com/WrathChaos/react-native-typescript-library-starter)
+A customizable modal library for React Native with touchable backdrop and support for custom UI.
 
-[![React Native Typescript Library Starter](https://img.shields.io/badge/-Extremely%20easy%20to%20create%20a%20React%20Native%20Component%20Library%20with%20both%20Stateful%20and%20Functional%20Component%20Examples-orange?style=for-the-badge)](https://github.com/WrathChaos/react-native-typescript-library-starter)
+## Features
 
-[![npm version](https://img.shields.io/npm/v/react-native-typescript-library-starter.svg?style=for-the-badge)](https://www.npmjs.com/package/react-native-typescript-library-starter)
-[![npm](https://img.shields.io/npm/dt/react-native-typescript-library-starter.svg?style=for-the-badge)](https://www.npmjs.com/package/react-native-typescript-library-starter)
-![Platform - Android and iOS](https://img.shields.io/badge/platform-Android%20%7C%20iOS-blue.svg?style=for-the-badge)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=for-the-badge)](https://github.com/prettier/prettier)
+- 🎨 Fully customizable UI
+- 🔄 Multiple animation types (fade, slide, bounce, zoom)
+- 🧭 Directional animations (up, down, left, right)
+- 🎯 Touchable backdrop to close modal
+- 📱 Works on both iOS and Android
+- 🔧 TypeScript support
+- 🪝 Includes useModal hook for easy state management
 
-<p align="center">
-  <img alt="React Native Typescript Library Starter"
-        src="assets/Screenshots/typescript.jpg" />
-</p>
-
-## Library Usage
-
-- `npm i`
-- `npm run husky:setup`
-- Delete example folder
-- Delete build folder
-- Make your own library into the `lib` folder
-- Change package.json
-- Change README for your own documentation
-- `npm run build`
-
-```
-> react-native-typescript-library-starter@0.1.0 build /Users/kuray/Coursion/MyLibraries/ReactNative/react-native-typescript-library-starter
-> cd lib && tsc && cp ../package.json ../build/dist/ && Echo Build completed!
-
-Build completed!
-```
-
-- Test your build/dist into the new project
-- Finally, time to npm publish :)
-
-### Below part is for Documentation ! Remove above Library Usage
-
-# Installation
-
-Add the dependency:
+## Installation
 
 ```bash
-npm i react-native-typescript-library-starter
+npm install react-native-modal-2
+# or
+yarn add react-native-modal-2
 ```
 
-## Peer Dependencies
+## Usage
 
-<h5><i>IMPORTANT! You need install them</i></h5>
-
-```js
-"react": ">= 16.x.x",
-"react-native": ">= 0.55.x",
-```
-
-# Usage
-
-## Import
+### Basic Modal
 
 ```jsx
-import MyComponent from "react-native-typescript-library-starter";
+import React from "react";
+import { View, Text, Button } from "react-native";
+import { Modal, useModal } from "react-native-modal-2";
+
+const App = () => {
+  const { visible, showModal, hideModal } = useModal();
+
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Button title="Show Modal" onPress={showModal} />
+
+      <Modal visible={visible} onClose={hideModal} animationType="fade">
+        <View style={{ padding: 20 }}>
+          <Text style={{ fontSize: 18, fontWeight: "bold" }}>Hello!</Text>
+          <Text style={{ marginVertical: 10 }}>
+            This is a basic modal with a touchable backdrop.
+          </Text>
+          <Button title="Close" onPress={hideModal} />
+        </View>
+      </Modal>
+    </View>
+  );
+};
+
+export default App;
 ```
 
-## Fundamental Usage
+### Animated Modal
 
 ```jsx
-<MyComponent />
+import React, { useState } from "react";
+import { View, Text, Button } from "react-native";
+import { AnimatedModal } from "react-native-modal-2";
+
+const App = () => {
+  const [visible, setVisible] = useState(false);
+
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Button title="Show Animated Modal" onPress={showModal} />
+
+      <AnimatedModal
+        visible={visible}
+        onClose={hideModal}
+        animationIn="slide"
+        animationOut="slide"
+        animationDirection="up"
+      >
+        <View style={{ padding: 20 }}>
+          <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+            Animated Modal
+          </Text>
+          <Text style={{ marginVertical: 10 }}>
+            This modal slides up from the bottom.
+          </Text>
+          <Button title="Close" onPress={hideModal} />
+        </View>
+      </AnimatedModal>
+    </View>
+  );
+};
+
+export default App;
 ```
 
-## Example Project 😍
+## API Reference
 
-You can checkout the example project 🥰
+### Modal Props
 
-Simply run
+| Prop                  | Type                        | Default  | Description                                          |
+| --------------------- | --------------------------- | -------- | ---------------------------------------------------- |
+| visible               | boolean                     | required | Controls the visibility of the modal                 |
+| onClose               | function                    | required | Callback when modal is closed                        |
+| children              | ReactNode                   | required | Content to render inside the modal                   |
+| animationType         | 'none' \| 'slide' \| 'fade' | 'fade'   | Type of animation for the modal                      |
+| backdropOpacity       | number                      | 0.5      | Opacity of the backdrop                              |
+| backdropColor         | string                      | '#000'   | Color of the backdrop                                |
+| contentContainerStyle | ViewStyle                   | {}       | Style for the content container                      |
+| modalContainerStyle   | ViewStyle                   | {}       | Style for the modal container                        |
+| closeOnBackdropPress  | boolean                     | true     | Whether to close the modal when backdrop is pressed  |
+| animationDuration     | number                      | 300      | Duration of the animation in milliseconds            |
+| statusBarTranslucent  | boolean                     | true     | Whether the modal should appear under the status bar |
 
-- `npm i`
-- `react-native run-ios/android`
+### AnimatedModal Props
 
-should work of the example project.
+Extends all Modal props plus:
 
-# Configuration - Props
+| Prop               | Type                                    | Default | Description                                 |
+| ------------------ | --------------------------------------- | ------- | ------------------------------------------- |
+| animationIn        | 'fade' \| 'slide' \| 'bounce' \| 'zoom' | 'fade'  | Type of entrance animation                  |
+| animationOut       | 'fade' \| 'slide' \| 'bounce' \| 'zoom' | 'fade'  | Type of exit animation                      |
+| animationDirection | 'up' \| 'down' \| 'left' \| 'right'     | 'up'    | Direction of the animation                  |
+| avoidKeyboard      | boolean                                 | false   | Whether the modal should avoid the keyboard |
 
-## Fundamentals
+### useModal Hook
 
-| Property    |  Type  |  Default  | Description           |
-| ----------- | :----: | :-------: | --------------------- |
-| title       | string | undefined | change the title      |
-| description | string | undefined | change the descrition |
+```jsx
+const { visible, showModal, hideModal, toggleModal } = useModal(initialState);
+```
 
-## Customization (Optionals)
+| Parameter    | Type    | Default | Description                           |
+| ------------ | ------- | ------- | ------------------------------------- |
+| initialState | boolean | false   | Initial visibility state of the modal |
 
-| Property       |   Type    |  Default  | Description                                                            |
-| -------------- | :-------: | :-------: | ---------------------------------------------------------------------- |
-| enableButton   |  boolean  |   false   | let you enable the button (must use it for button)                     |
-| onPress        | function  | undefined | set your own logic for the button functionality when it is pressed     |
-| buttonText     |  string   | undefined | change the button's text                                               |
-| style          | ViewStyle |  default  | set or override the style object for the main container                |
-| buttonStyle    | ViewStyle |  default  | set or override the style object for the button style                  |
-| ImageComponent |   Image   |  default  | set your own component instead of default react-native Image component |
-
-## Future Plans
-
-- [x] ~~LICENSE~~
-- [ ] Write an article about the lib on Medium
-
-# Change Log
-
-Change log will be here !
-
-## Author
-
-FreakyCoder, kurayogun@gmail.com
+| Return Value | Type     | Description                             |
+| ------------ | -------- | --------------------------------------- |
+| visible      | boolean  | Current visibility state                |
+| showModal    | function | Function to show the modal              |
+| hideModal    | function | Function to hide the modal              |
+| toggleModal  | function | Function to toggle the modal visibility |
 
 ## License
 
-React Native Typescript Library Starter is available under the MIT license. See the LICENSE file for more info.
+MIT
