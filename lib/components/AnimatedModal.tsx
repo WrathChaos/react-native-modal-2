@@ -7,6 +7,7 @@ import {
   Animated,
   Dimensions,
   Platform,
+  ModalProps as RNModalProps,
 } from "react-native";
 import { AnimatedModalProps } from "../types";
 
@@ -19,7 +20,7 @@ const AnimatedModal: React.FC<AnimatedModalProps> = ({
   backdropOpacity = 0.5,
   backdropColor = "#000",
   contentContainerStyle,
-  modalContainerStyle,
+  style,
   closeOnBackdropPress = true,
   animationDuration = 300,
   statusBarTranslucent = true,
@@ -27,6 +28,7 @@ const AnimatedModal: React.FC<AnimatedModalProps> = ({
   animationOut = animationIn, // Default to same animation for in/out
   animationDirection = "up",
   avoidKeyboard = false,
+  ...otherProps
 }) => {
   // State to control React Native's Modal visibility
   const [modalVisible, setModalVisible] = useState(false);
@@ -189,8 +191,9 @@ const AnimatedModal: React.FC<AnimatedModalProps> = ({
       onRequestClose={onBackdropPress}
       statusBarTranslucent={statusBarTranslucent}
       animationType="none"
+      {...otherProps}
     >
-      <View style={[styles.container, modalContainerStyle]}>
+      <View style={[styles.container, style]}>
         <TouchableWithoutFeedback
           onPress={() => closeOnBackdropPress && onBackdropPress()}
         >

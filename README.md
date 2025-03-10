@@ -19,6 +19,8 @@ A powerful, customizable modal library for React Native with smooth animations, 
 - 🪝 Includes useModal hook for easy state management
 - ⚡ Optimized performance with native driver animations
 - 🧩 Simple API with sensible defaults
+- 🔍 Zero default styling for content - complete freedom to design your modal
+- 🔌 Full prop drilling support for the underlying React Native Modal
 
 ## Installation
 
@@ -70,8 +72,18 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   modalContent: {
+    backgroundColor: "white",
     padding: 20,
     borderRadius: 10,
+    maxWidth: "80%",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   title: {
     fontSize: 18,
@@ -125,14 +137,13 @@ const App = () => {
         animationIn="slide"
         animationDirection="up"
         backdropOpacity={0.7}
+        contentContainerStyle={styles.modalContent}
       >
-        <View style={styles.modalContent}>
-          <Text style={styles.title}>Slide Up Modal</Text>
-          <Text style={styles.description}>
-            This modal slides up from the bottom of the screen.
-          </Text>
-          <Button title="Close" onPress={() => setSlideModalVisible(false)} />
-        </View>
+        <Text style={styles.title}>Slide Up Modal</Text>
+        <Text style={styles.description}>
+          This modal slides up from the bottom of the screen.
+        </Text>
+        <Button title="Close" onPress={() => setSlideModalVisible(false)} />
       </AnimatedModal>
 
       {/* Bounce Modal */}
@@ -142,14 +153,13 @@ const App = () => {
         animationIn="bounce"
         animationDirection="down"
         backdropColor="#2c3e50"
+        contentContainerStyle={styles.modalContent}
       >
-        <View style={styles.modalContent}>
-          <Text style={styles.title}>Bounce Modal</Text>
-          <Text style={styles.description}>
-            This modal bounces in from the top with a custom backdrop color.
-          </Text>
-          <Button title="Close" onPress={() => setBounceModalVisible(false)} />
-        </View>
+        <Text style={styles.title}>Bounce Modal</Text>
+        <Text style={styles.description}>
+          This modal bounces in from the top with a custom backdrop color.
+        </Text>
+        <Button title="Close" onPress={() => setBounceModalVisible(false)} />
       </AnimatedModal>
 
       {/* Zoom Modal */}
@@ -159,14 +169,13 @@ const App = () => {
         animationIn="zoom"
         animationOut="zoom"
         animationDuration={400}
+        contentContainerStyle={styles.modalContent}
       >
-        <View style={styles.modalContent}>
-          <Text style={styles.title}>Zoom Modal</Text>
-          <Text style={styles.description}>
-            This modal zooms in and out with a custom animation duration.
-          </Text>
-          <Button title="Close" onPress={() => setZoomModalVisible(false)} />
-        </View>
+        <Text style={styles.title}>Zoom Modal</Text>
+        <Text style={styles.description}>
+          This modal zooms in and out with a custom animation duration.
+        </Text>
+        <Button title="Close" onPress={() => setZoomModalVisible(false)} />
       </AnimatedModal>
     </View>
   );
@@ -183,9 +192,18 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   modalContent: {
+    backgroundColor: "white",
     padding: 20,
     borderRadius: 10,
-    backgroundColor: "white",
+    maxWidth: "80%",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   title: {
     fontSize: 18,
@@ -217,10 +235,11 @@ The `Modal` component provides a simple modal with basic animation options.
 | backdropOpacity       | number                      | 0.5      | Opacity of the backdrop                              |
 | backdropColor         | string                      | '#000'   | Color of the backdrop                                |
 | contentContainerStyle | ViewStyle                   | {}       | Style for the content container                      |
-| modalContainerStyle   | ViewStyle                   | {}       | Style for the modal container                        |
+| style                 | ViewStyle                   | {}       | Style for the modal container                        |
 | closeOnBackdropPress  | boolean                     | true     | Whether to close the modal when backdrop is pressed  |
 | animationDuration     | number                      | 300      | Duration of the animation in milliseconds            |
 | statusBarTranslucent  | boolean                     | true     | Whether the modal should appear under the status bar |
+| ...otherProps         | RNModalProps                | -        | Any other props from React Native's Modal component  |
 
 ### AnimatedModal Component
 
@@ -236,6 +255,7 @@ Includes all props from the Modal component, plus:
 | animationOut       | 'fade' \| 'slide' \| 'bounce' \| 'zoom' | same as animationIn | Type of exit animation                 |
 | animationDirection | 'up' \| 'down' \| 'left' \| 'right'     | 'up'           | Direction of the animation                  |
 | avoidKeyboard      | boolean                                 | false          | Whether the modal should avoid the keyboard |
+| ...otherProps      | RNModalProps                            | -              | Any other props from React Native's Modal component |
 
 ### useModal Hook
 
@@ -276,7 +296,9 @@ The modal zooms in and out with a scaling effect.
 
 ## Customization Examples
 
-### Custom Modal Styling
+### Modal Content Styling
+
+The library doesn't apply any default styling to your modal content, giving you complete freedom to design it however you want. You need to provide your own styling through the `contentContainerStyle` prop:
 
 ```jsx
 <AnimatedModal
@@ -309,9 +331,29 @@ The modal zooms in and out with a scaling effect.
   onBackdropPress={hideModal}
   animationIn="bounce"
   animationDuration={500} // Slower animation (500ms)
+  contentContainerStyle={styles.modalContent}
 >
   {/* Modal content */}
 </AnimatedModal>
+```
+
+### Using React Native Modal Props
+
+You can pass any props from React Native's Modal component directly to our Modal components:
+
+```jsx
+<Modal
+  visible={visible}
+  onBackdropPress={hideModal}
+  animationType="fade"
+  contentContainerStyle={styles.modalContent}
+  style={styles.modalWrapper} // Style for the modal container
+  hardwareAccelerated={true} // React Native Modal prop
+  supportedOrientations={['portrait', 'landscape']} // React Native Modal prop
+  onShow={() => console.log('Modal shown')} // React Native Modal prop
+>
+  {/* Modal content */}
+</Modal>
 ```
 
 ## Troubleshooting
@@ -328,8 +370,8 @@ If animations aren't working correctly:
 
 If your modal content isn't displaying correctly:
 
-1. Check your content container styles
-2. Make sure your content doesn't exceed the modal dimensions
+1. Make sure you've provided proper styling through `contentContainerStyle`
+2. Remember that the library doesn't apply any default styling to your content
 3. Use ScrollView for content that might be too large
 
 ### Performance Issues

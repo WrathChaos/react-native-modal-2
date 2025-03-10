@@ -7,6 +7,7 @@ import {
   Animated,
   Dimensions,
   Platform,
+  ModalProps as RNModalProps,
 } from "react-native";
 import { ModalProps } from "../types";
 
@@ -19,11 +20,12 @@ const Modal: React.FC<ModalProps> = ({
   backdropOpacity = 0.5,
   backdropColor = "#000",
   contentContainerStyle,
-  modalContainerStyle,
+  style,
   closeOnBackdropPress = true,
   animationDuration = 300,
   statusBarTranslucent = true,
   animationType = "fade",
+  ...otherProps
 }) => {
   // State to control React Native's Modal visibility
   const [modalVisible, setModalVisible] = useState(false);
@@ -107,15 +109,15 @@ const Modal: React.FC<ModalProps> = ({
       onRequestClose={onBackdropPress}
       statusBarTranslucent={statusBarTranslucent}
       animationType="none"
+      {...otherProps}
     >
-      <View style={[styles.container, modalContainerStyle]}>
+      <View style={[styles.container, style]}>
         <TouchableWithoutFeedback onPress={handleBackdropPress}>
           <Animated.View style={[styles.backdrop, backdropStyle]} />
         </TouchableWithoutFeedback>
 
         <Animated.View
           style={[
-            styles.contentContainer,
             contentContainerStyle,
             contentAnimationStyle(),
           ]}
@@ -141,21 +143,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     width,
     height: Platform.OS === "ios" ? height : "100%",
-  },
-  contentContainer: {
-    backgroundColor: "white",
-    borderRadius: 10,
-    padding: 20,
-    maxWidth: "80%",
-    maxHeight: "80%",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
 });
 

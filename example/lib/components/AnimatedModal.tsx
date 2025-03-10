@@ -7,6 +7,7 @@ import {
   Animated,
   Dimensions,
   Platform,
+  ModalProps as RNModalProps,
 } from "react-native";
 import { AnimatedModalProps } from "../types";
 
@@ -19,7 +20,7 @@ const AnimatedModal: React.FC<AnimatedModalProps> = ({
   backdropOpacity = 0.5,
   backdropColor = "#000",
   contentContainerStyle,
-  modalContainerStyle,
+  style,
   closeOnBackdropPress = true,
   animationDuration = 300,
   statusBarTranslucent = true,
@@ -27,6 +28,7 @@ const AnimatedModal: React.FC<AnimatedModalProps> = ({
   animationOut = animationIn, // Default to same animation for in/out
   animationDirection = "up",
   avoidKeyboard = false,
+  ...otherProps
 }) => {
   // State to control React Native's Modal visibility
   const [modalVisible, setModalVisible] = useState(false);
@@ -62,7 +64,7 @@ const AnimatedModal: React.FC<AnimatedModalProps> = ({
         }
       });
     }
-  }, [visible, animationDuration]);
+  }, [visible, animationDuration, animationProgress]);
 
   // Backdrop animation style
   const backdropAnimationStyle = {
@@ -189,8 +191,9 @@ const AnimatedModal: React.FC<AnimatedModalProps> = ({
       onRequestClose={onBackdropPress}
       statusBarTranslucent={statusBarTranslucent}
       animationType="none"
+      {...otherProps}
     >
-      <View style={[styles.container, modalContainerStyle]}>
+      <View style={[styles.container, style]}>
         <TouchableWithoutFeedback
           onPress={() => closeOnBackdropPress && onBackdropPress()}
         >
@@ -199,7 +202,6 @@ const AnimatedModal: React.FC<AnimatedModalProps> = ({
 
         <Animated.View
           style={[
-            styles.contentContainer,
             contentContainerStyle,
             getContentAnimationStyle(),
           ]}
@@ -225,21 +227,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     width,
     height: Platform.OS === "ios" ? height : "100%",
-  },
-  contentContainer: {
-    backgroundColor: "white",
-    borderRadius: 10,
-    padding: 20,
-    maxWidth: "80%",
-    maxHeight: "80%",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
 });
 
