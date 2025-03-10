@@ -14,7 +14,7 @@ const { height, width } = Dimensions.get("window");
 
 const Modal: React.FC<ModalProps> = ({
   visible,
-  onClose,
+  onBackdropPress,
   children,
   backdropOpacity = 0.5,
   backdropColor = "#000",
@@ -96,7 +96,7 @@ const Modal: React.FC<ModalProps> = ({
   // Handle backdrop press
   const handleBackdropPress = () => {
     if (closeOnBackdropPress) {
-      onClose();
+      onBackdropPress();
     }
   };
 
@@ -104,7 +104,7 @@ const Modal: React.FC<ModalProps> = ({
     <RNModal
       transparent
       visible={modalVisible}
-      onRequestClose={onClose}
+      onRequestClose={onBackdropPress}
       statusBarTranslucent={statusBarTranslucent}
       animationType="none"
     >

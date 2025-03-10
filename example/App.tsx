@@ -142,8 +142,8 @@ const App = () => {
       {/* Basic Modal */}
       <Modal
         visible={basicModal.visible}
-        onClose={basicModal.hideModal}
         animationType="fade"
+        onBackdropPress={basicModal.hideModal}
       >
         <ModalContent
           title="Basic Modal"
@@ -155,7 +155,7 @@ const App = () => {
       {/* Fade Animation Modal */}
       <AnimatedModal
         visible={fadeModalVisible}
-        onClose={() => setFadeModalVisible(false)}
+        onBackdropPress={() => setFadeModalVisible(false)}
         animationIn="fade"
         animationOut="fade"
       >
@@ -169,7 +169,7 @@ const App = () => {
       {/* Slide Up Modal */}
       <AnimatedModal
         visible={slideUpModalVisible}
-        onClose={() => setSlideUpModalVisible(false)}
+        onBackdropPress={() => setSlideUpModalVisible(false)}
         animationIn="slide"
         animationOut="slide"
         animationDirection="up"
@@ -184,7 +184,7 @@ const App = () => {
       {/* Slide Down Modal */}
       <AnimatedModal
         visible={slideDownModalVisible}
-        onClose={() => setSlideDownModalVisible(false)}
+        onBackdropPress={() => setSlideDownModalVisible(false)}
         animationIn="slide"
         animationOut="slide"
         animationDirection="down"
@@ -199,7 +199,7 @@ const App = () => {
       {/* Slide Left Modal */}
       <AnimatedModal
         visible={slideLeftModalVisible}
-        onClose={() => setSlideLeftModalVisible(false)}
+        onBackdropPress={() => setSlideLeftModalVisible(false)}
         animationIn="slide"
         animationOut="slide"
         animationDirection="left"
@@ -214,7 +214,7 @@ const App = () => {
       {/* Slide Right Modal */}
       <AnimatedModal
         visible={slideRightModalVisible}
-        onClose={() => setSlideRightModalVisible(false)}
+        onBackdropPress={() => setSlideRightModalVisible(false)}
         animationIn="slide"
         animationOut="slide"
         animationDirection="right"
@@ -229,7 +229,7 @@ const App = () => {
       {/* Bounce Up Modal */}
       <AnimatedModal
         visible={bounceUpModalVisible}
-        onClose={() => setBounceUpModalVisible(false)}
+        onBackdropPress={() => setBounceUpModalVisible(false)}
         animationIn="bounce"
         animationOut="slide"
         animationDirection="up"
@@ -244,7 +244,7 @@ const App = () => {
       {/* Bounce Down Modal */}
       <AnimatedModal
         visible={bounceDownModalVisible}
-        onClose={() => setBounceDownModalVisible(false)}
+        onBackdropPress={() => setBounceDownModalVisible(false)}
         animationIn="bounce"
         animationOut="slide"
         animationDirection="down"
@@ -259,7 +259,7 @@ const App = () => {
       {/* Zoom Modal */}
       <AnimatedModal
         visible={zoomModalVisible}
-        onClose={() => setZoomModalVisible(false)}
+        onBackdropPress={() => setZoomModalVisible(false)}
         animationIn="zoom"
         animationOut="zoom"
       >

@@ -14,7 +14,7 @@ const { height, width } = Dimensions.get("window");
 
 const AnimatedModal: React.FC<AnimatedModalProps> = ({
   visible,
-  onClose,
+  onBackdropPress,
   children,
   backdropOpacity = 0.5,
   backdropColor = "#000",
@@ -186,13 +186,13 @@ const AnimatedModal: React.FC<AnimatedModalProps> = ({
     <Modal
       transparent
       visible={modalVisible}
-      onRequestClose={onClose}
+      onRequestClose={onBackdropPress}
       statusBarTranslucent={statusBarTranslucent}
       animationType="none"
     >
       <View style={[styles.container, modalContainerStyle]}>
         <TouchableWithoutFeedback
-          onPress={() => closeOnBackdropPress && onClose()}
+          onPress={() => closeOnBackdropPress && onBackdropPress()}
         >
           <Animated.View style={[styles.backdrop, backdropAnimationStyle]} />
         </TouchableWithoutFeedback>

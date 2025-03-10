@@ -49,7 +49,7 @@ const App = () => {
     <View style={styles.container}>
       <Button title="Show Basic Modal" onPress={showModal} />
 
-      <Modal visible={visible} onClose={hideModal} animationType="fade">
+      <Modal visible={visible} onBackdropPress={hideModal} animationType="fade">
         <View style={styles.modalContent}>
           <Text style={styles.title}>Hello!</Text>
           <Text style={styles.description}>
@@ -121,7 +121,7 @@ const App = () => {
       {/* Slide Modal */}
       <AnimatedModal
         visible={slideModalVisible}
-        onClose={() => setSlideModalVisible(false)}
+        onBackdropPress={() => setSlideModalVisible(false)}
         animationIn="slide"
         animationDirection="up"
         backdropOpacity={0.7}
@@ -138,7 +138,7 @@ const App = () => {
       {/* Bounce Modal */}
       <AnimatedModal
         visible={bounceModalVisible}
-        onClose={() => setBounceModalVisible(false)}
+        onBackdropPress={() => setBounceModalVisible(false)}
         animationIn="bounce"
         animationDirection="down"
         backdropColor="#2c3e50"
@@ -155,7 +155,7 @@ const App = () => {
       {/* Zoom Modal */}
       <AnimatedModal
         visible={zoomModalVisible}
-        onClose={() => setZoomModalVisible(false)}
+        onBackdropPress={() => setZoomModalVisible(false)}
         animationIn="zoom"
         animationOut="zoom"
         animationDuration={400}
@@ -211,7 +211,7 @@ The `Modal` component provides a simple modal with basic animation options.
 | Prop                  | Type                        | Default  | Description                                          |
 | --------------------- | --------------------------- | -------- | ---------------------------------------------------- |
 | visible               | boolean                     | required | Controls the visibility of the modal                 |
-| onClose               | function                    | required | Callback when modal is closed                        |
+| onBackdropPress       | function                    | required | Callback when backdrop is pressed or modal is closed |
 | children              | ReactNode                   | required | Content to render inside the modal                   |
 | animationType         | 'none' \| 'slide' \| 'fade' | 'fade'   | Type of animation for the modal                      |
 | backdropOpacity       | number                      | 0.5      | Opacity of the backdrop                              |
@@ -281,7 +281,7 @@ The modal zooms in and out with a scaling effect.
 ```jsx
 <AnimatedModal
   visible={visible}
-  onClose={hideModal}
+  onBackdropPress={hideModal}
   animationIn="slide"
   contentContainerStyle={{
     backgroundColor: '#f8f9fa',
@@ -306,7 +306,7 @@ The modal zooms in and out with a scaling effect.
 ```jsx
 <AnimatedModal
   visible={visible}
-  onClose={hideModal}
+  onBackdropPress={hideModal}
   animationIn="bounce"
   animationDuration={500} // Slower animation (500ms)
 >

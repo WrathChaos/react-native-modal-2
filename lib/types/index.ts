@@ -6,7 +6,7 @@ export type AnimationType = "none" | "slide" | "fade" | "bounce" | "zoom";
 
 export interface BaseModalProps {
   visible: boolean;
-  onClose: () => void;
+  onBackdropPress: () => void;
   children: ReactNode;
   backdropOpacity?: number;
   backdropColor?: string;

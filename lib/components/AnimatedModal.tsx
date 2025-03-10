@@ -14,7 +14,7 @@ const { height, width } = Dimensions.get("window");
 
 const AnimatedModal: React.FC<AnimatedModalProps> = ({
   visible,
-  onClose,
+  onBackdropPress,
   children,
   backdropOpacity = 0.5,
   backdropColor = "#000",
@@ -62,7 +62,7 @@ const AnimatedModal: React.FC<AnimatedModalProps> = ({
         }
       });
     }
-  }, [visible, animationDuration]);
+  }, [visible, animationDuration, animationProgress]);
 
   // Backdrop animation style
   const backdropAnimationStyle = {
@@ -186,20 +186,19 @@ const AnimatedModal: React.FC<AnimatedModalProps> = ({
     <Modal
       transparent
       visible={modalVisible}
-      onRequestClose={onClose}
+      onRequestClose={onBackdropPress}
       statusBarTranslucent={statusBarTranslucent}
       animationType="none"
     >
       <View style={[styles.container, modalContainerStyle]}>
         <TouchableWithoutFeedback
-          onPress={() => closeOnBackdropPress && onClose()}
+          onPress={() => closeOnBackdropPress && onBackdropPress()}
         >
           <Animated.View style={[styles.backdrop, backdropAnimationStyle]} />
         </TouchableWithoutFeedback>
 
         <Animated.View
           style={[
-            styles.contentContainer,
             contentContainerStyle,
             getContentAnimationStyle(),
           ]}
@@ -225,21 +224,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     width,
     height: Platform.OS === "ios" ? height : "100%",
-  },
-  contentContainer: {
-    backgroundColor: "white",
-    borderRadius: 10,
-    padding: 20,
-    maxWidth: "80%",
-    maxHeight: "80%",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
 });
 
