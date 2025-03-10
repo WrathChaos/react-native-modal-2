@@ -356,6 +356,22 @@ You can pass any props from React Native's Modal component directly to our Modal
 </Modal>
 ```
 
+## Roadmap
+
+We're constantly working to improve react-native-modal-2. Here are some features we plan to add in future releases:
+
+### Upcoming Features
+
+- **Separate Animation Durations**: Different durations for entrance (`animationInDuration`) and exit (`animationOutDuration`) animations
+- **Backdrop Control**: `hasBackdrop` prop to completely disable the backdrop when needed
+- **Custom Backdrop Component**: Support for custom backdrop components beyond just color and opacity
+- **Lifecycle Events**: `onModalShow` and `onModalHide` callbacks for better control of modal lifecycle
+- **Gesture Support**: Swipe to dismiss and other gesture-based interactions
+- **Stacked Modals**: Better support for displaying multiple modals simultaneously
+- **Enhanced Keyboard Handling**: Improved `KeyboardAvoidingView` integration with automatic content adjustment when keyboard appears
+
+Have a feature request? Feel free to open an issue or submit a pull request!
+
 ## Troubleshooting
 
 ### Animations Not Working
