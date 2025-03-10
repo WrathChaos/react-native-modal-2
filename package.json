@@ -1,6 +1,6 @@
 {
   "name": "react-native-modal-2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A powerful, customizable modal library for React Native with smooth animations, touchable backdrop, and comprehensive TypeScript support.",
   "main": "./build/dist/index.js",
   "repository": "git@github.com:WrathChaos/react-native-modal-2.git",
