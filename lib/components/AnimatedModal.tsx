@@ -7,12 +7,14 @@ import {
   Animated,
   Dimensions,
   Platform,
-  ModalProps as RNModalProps,
 } from "react-native";
 import { AnimatedModalProps } from "../types";
 
 const { height, width } = Dimensions.get("window");
 
+/**
+ * AnimatedModal component with various animation options
+ */
 const AnimatedModal: React.FC<AnimatedModalProps> = ({
   visible,
   onBackdropPress,
@@ -25,9 +27,11 @@ const AnimatedModal: React.FC<AnimatedModalProps> = ({
   animationDuration = 300,
   statusBarTranslucent = true,
   animationIn = "fade",
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   animationOut = animationIn, // Default to same animation for in/out
   animationDirection = "up",
-  avoidKeyboard = false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  avoidKeyboard = false, // Will be implemented in future versions
   ...otherProps
 }) => {
   // State to control React Native's Modal visibility
@@ -201,10 +205,7 @@ const AnimatedModal: React.FC<AnimatedModalProps> = ({
         </TouchableWithoutFeedback>
 
         <Animated.View
-          style={[
-            contentContainerStyle,
-            getContentAnimationStyle(),
-          ]}
+          style={[contentContainerStyle, getContentAnimationStyle()]}
         >
           {children}
         </Animated.View>

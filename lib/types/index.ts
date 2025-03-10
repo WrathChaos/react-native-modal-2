@@ -4,7 +4,8 @@ import { StyleProp, ViewStyle, ModalProps as RNModalProps } from "react-native";
 export type AnimationDirection = "up" | "down" | "left" | "right";
 export type AnimationType = "none" | "slide" | "fade" | "bounce" | "zoom";
 
-export interface BaseModalProps extends Omit<RNModalProps, 'visible' | 'animationType'> {
+export interface BaseModalProps
+  extends Omit<RNModalProps, "visible" | "animationType"> {
   visible: boolean;
   onBackdropPress: () => void;
   children: ReactNode;

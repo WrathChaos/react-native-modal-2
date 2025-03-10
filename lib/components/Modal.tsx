@@ -7,12 +7,14 @@ import {
   Animated,
   Dimensions,
   Platform,
-  ModalProps as RNModalProps,
 } from "react-native";
 import { ModalProps } from "../types";
 
 const { height, width } = Dimensions.get("window");
 
+/**
+ * Modal component with basic animation options
+ */
 const Modal: React.FC<ModalProps> = ({
   visible,
   onBackdropPress,
@@ -116,12 +118,7 @@ const Modal: React.FC<ModalProps> = ({
           <Animated.View style={[styles.backdrop, backdropStyle]} />
         </TouchableWithoutFeedback>
 
-        <Animated.View
-          style={[
-            contentContainerStyle,
-            contentAnimationStyle(),
-          ]}
-        >
+        <Animated.View style={[contentContainerStyle, contentAnimationStyle()]}>
           {children}
         </Animated.View>
       </View>

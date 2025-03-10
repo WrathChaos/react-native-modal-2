@@ -31,12 +31,14 @@ This is an example project demonstrating the usage of the `react-native-modal-2`
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/WrathChaos/react-native-modal-2.git
 cd react-native-modal-2/example
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 # or
@@ -44,6 +46,7 @@ yarn install
 ```
 
 3. Start the Expo development server:
+
 ```bash
 npx expo start
 ```

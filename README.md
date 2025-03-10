@@ -112,21 +112,21 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <Button 
-        title="Slide Up Modal" 
-        onPress={() => setSlideModalVisible(true)} 
+      <Button
+        title="Slide Up Modal"
+        onPress={() => setSlideModalVisible(true)}
         style={styles.button}
       />
-      
-      <Button 
-        title="Bounce Modal" 
-        onPress={() => setBounceModalVisible(true)} 
+
+      <Button
+        title="Bounce Modal"
+        onPress={() => setBounceModalVisible(true)}
         style={styles.button}
       />
-      
-      <Button 
-        title="Zoom Modal" 
-        onPress={() => setZoomModalVisible(true)} 
+
+      <Button
+        title="Zoom Modal"
+        onPress={() => setZoomModalVisible(true)}
         style={styles.button}
       />
 
@@ -249,13 +249,13 @@ The `AnimatedModal` component extends the basic Modal with more advanced animati
 
 Includes all props from the Modal component, plus:
 
-| Prop               | Type                                    | Default        | Description                                 |
-| ------------------ | --------------------------------------- | -------------- | ------------------------------------------- |
-| animationIn        | 'fade' \| 'slide' \| 'bounce' \| 'zoom' | 'fade'         | Type of entrance animation                  |
-| animationOut       | 'fade' \| 'slide' \| 'bounce' \| 'zoom' | same as animationIn | Type of exit animation                 |
-| animationDirection | 'up' \| 'down' \| 'left' \| 'right'     | 'up'           | Direction of the animation                  |
-| avoidKeyboard      | boolean                                 | false          | Whether the modal should avoid the keyboard |
-| ...otherProps      | RNModalProps                            | -              | Any other props from React Native's Modal component |
+| Prop               | Type                                    | Default             | Description                                         |
+| ------------------ | --------------------------------------- | ------------------- | --------------------------------------------------- |
+| animationIn        | 'fade' \| 'slide' \| 'bounce' \| 'zoom' | 'fade'              | Type of entrance animation                          |
+| animationOut       | 'fade' \| 'slide' \| 'bounce' \| 'zoom' | same as animationIn | Type of exit animation                              |
+| animationDirection | 'up' \| 'down' \| 'left' \| 'right'     | 'up'                | Direction of the animation                          |
+| avoidKeyboard      | boolean                                 | false               | Whether the modal should avoid the keyboard         |
+| ...otherProps      | RNModalProps                            | -                   | Any other props from React Native's Modal component |
 
 ### useModal Hook
 
@@ -283,15 +283,19 @@ const { visible, showModal, hideModal, toggleModal } = useModal(initialState);
 ## Animation Types
 
 ### Fade
+
 The modal fades in and out with a smooth opacity transition.
 
 ### Slide
+
 The modal slides in from the specified direction (up, down, left, right).
 
 ### Bounce
+
 The modal bounces in from the specified direction with a spring-like effect.
 
 ### Zoom
+
 The modal zooms in and out with a scaling effect.
 
 ## Customization Examples
@@ -306,11 +310,11 @@ The library doesn't apply any default styling to your modal content, giving you 
   onBackdropPress={hideModal}
   animationIn="slide"
   contentContainerStyle={{
-    backgroundColor: '#f8f9fa',
+    backgroundColor: "#f8f9fa",
     borderRadius: 15,
     padding: 20,
-    width: '90%',
-    shadowColor: '#000',
+    width: "90%",
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.3,
     shadowRadius: 20,
@@ -349,8 +353,8 @@ You can pass any props from React Native's Modal component directly to our Modal
   contentContainerStyle={styles.modalContent}
   style={styles.modalWrapper} // Style for the modal container
   hardwareAccelerated={true} // React Native Modal prop
-  supportedOrientations={['portrait', 'landscape']} // React Native Modal prop
-  onShow={() => console.log('Modal shown')} // React Native Modal prop
+  supportedOrientations={["portrait", "landscape"]} // React Native Modal prop
+  onShow={() => console.log("Modal shown")} // React Native Modal prop
 >
   {/* Modal content */}
 </Modal>

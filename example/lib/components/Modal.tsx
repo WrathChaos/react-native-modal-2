@@ -116,12 +116,7 @@ const Modal: React.FC<ModalProps> = ({
           <Animated.View style={[styles.backdrop, backdropStyle]} />
         </TouchableWithoutFeedback>
 
-        <Animated.View
-          style={[
-            contentContainerStyle,
-            contentAnimationStyle(),
-          ]}
-        >
+        <Animated.View style={[contentContainerStyle, contentAnimationStyle()]}>
           {children}
         </Animated.View>
       </View>

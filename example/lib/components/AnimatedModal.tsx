@@ -201,10 +201,7 @@ const AnimatedModal: React.FC<AnimatedModalProps> = ({
         </TouchableWithoutFeedback>
 
         <Animated.View
-          style={[
-            contentContainerStyle,
-            getContentAnimationStyle(),
-          ]}
+          style={[contentContainerStyle, getContentAnimationStyle()]}
         >
           {children}
         </Animated.View>
