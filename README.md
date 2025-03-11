@@ -39,6 +39,8 @@ pnpm add react-native-modal-2
 
 ### Basic Modal
 
+`useModal` hook is not a must it is just an easier way to control the modal totally optional.
+
 ```jsx
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
